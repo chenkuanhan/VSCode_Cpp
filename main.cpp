@@ -16,7 +16,7 @@ public:
     // 方法：輸出個人資訊
     void print() const {
         std::cout << "Name: " << name << ", Age: " << age << std::endl;
-    }
+}
 };
 
 int main() {
