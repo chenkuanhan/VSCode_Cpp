@@ -1,35 +1,36 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
-class Person {
-private:
+// 基類 Animal
+class Animal {
+protected:
     string name;
-    int age;
 
 public:
-    // 設定名稱並返回當前物件的引用
-    Person& setName(string n) {
-        name = n;
-        return *this;  // 回傳當前物件
-    }
+    // 構造函數
+    Animal(const string& name) : name(name) {}
 
-    // 設定年齡並返回當前物件的引用
-    Person& setAge(int a) {
-        age = a;
-        return *this;  // 回傳當前物件
+    // 成員函數 make_sound
+    virtual void make_sound() const {
+        cout << "Some sound" << endl;
     }
+};
 
-    // 顯示個人資訊
-    void show() const {
-        cout << "Name: " << name << ", Age: " << age << endl;
+// 派生類 Dog
+class Dog : public Animal {
+public:
+    // 使用基類構造函數
+    Dog(const string& name) : Animal(name) {}
+
+    // 覆蓋 make_sound 函數
+    void make_sound() const override {
+        cout << name << " barks: Woof!" << endl;
     }
 };
 
 int main() {
-    Person p;
-    
-    // 透過 Chaining 方式設定值
-    p.setName("Alice").setAge(25).show();  
-
+    Dog dog("Alice");
+    dog.make_sound();  // 輸出: Rex barks: Woof!
     return 0;
 }
