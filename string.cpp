@@ -1,19 +1,35 @@
 #include <iostream>
-#include <fstream>
-#include <string>
+using namespace std;
+
+class Person {
+private:
+    string name;
+    int age;
+
+public:
+    // 設定名稱並返回當前物件的引用
+    Person& setName(string n) {
+        name = n;
+        return *this;  // 回傳當前物件
+    }
+
+    // 設定年齡並返回當前物件的引用
+    Person& setAge(int a) {
+        age = a;
+        return *this;  // 回傳當前物件
+    }
+
+    // 顯示個人資訊
+    void show() const {
+        cout << "Name: " << name << ", Age: " << age << endl;
+    }
+};
 
 int main() {
-    std::ifstream inputFile("example.txt"); // 開啟檔案
-    if (!inputFile) {
-        std::cerr << "無法開啟檔案!" << std::endl;
-        return 1; // 返回錯誤代碼
-    }
+    Person p;
+    
+    // 透過 Chaining 方式設定值
+    p.setName("Alice").setAge(25).show();  
 
-    std::string line;
-    while (std::getline(inputFile, line)) { // 逐行讀取
-        std::cout << line << std::endl; // 輸出每一行
-    }
-
-    inputFile.close(); // 關閉檔案
     return 0;
 }
