@@ -3,9 +3,9 @@
 using namespace std;
 
 int main() {
-    string a = "10";
-    string b = "3.0";
-    int c = stoi(a)+stoi(b);
+    char a = 10;
+    char b = 4.0;
+    double c = a+b;
     cout << c << endl;  
     return 0;
 }
