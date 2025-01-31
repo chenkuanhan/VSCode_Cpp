@@ -1,36 +1,33 @@
 #include <iostream>
-#include <string>
-using namespace std;
-
-// 基類 Animal
-class Animal {
-protected:
-    string name;
+class MyNumber {
+    private:
+    int value;
 
 public:
-    // 構造函數
-    Animal(const string& name) : name(name) {}
+    // Constructor
+    MyNumber(int val) : value(val) {}
 
-    // 成員函數 make_sound
-    virtual void make_sound() const {
-        cout << "Some sound" << endl;
+    // Overloading += operator
+    MyNumber& operator+=(const MyNumber& other) {
+        this->value += other.value;
+        return *this; // Returning *this allows chaining (e.g., a += b += c)
     }
-};
 
-// 派生類 Dog
-class Dog : public Animal {
-public:
-    // 使用基類構造函數
-    Dog(const string& name) : Animal(name) {}
-
-    // 覆蓋 make_sound 函數
-    void make_sound() const override {
-        cout << name << " barks: Woof!" << endl;
+    // Friend function to allow easy printing
+    friend std::ostream& operator<<(std::ostream& os, const MyNumber& num) {
+        os << num.value;
+        return os;
     }
-};
 
+};
 int main() {
-    Dog dog("Alice");
-    dog.make_sound();  // 輸出: Rex barks: Woof!
+    MyNumber a(10);
+    MyNumber b(5);
+    MyNumber c(3);
+
+    a += b += c;  // Equivalent to: b = b + c; then a = a + b;
+    std::cout << "a: " << a << std::endl;  // Output: a: 18
+    std::cout << "b: " << b << std::endl;  // Output: b: 8
     return 0;
+
 }
