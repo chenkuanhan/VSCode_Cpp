@@ -1,7 +1,7 @@
 #include <iostream>
 int main(){
-    char str[] = {'H', 'e', 'l', 'l', 'o', '\0'};
-    for (int i = 0; str[i] != '\0'; i++){
+    std::string str = "Hello World";
+    for (int i = 0; i < str.length(); i++){
         std::cout << str[i] << std::endl;
 
     }
