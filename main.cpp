@@ -1,15 +1,14 @@
 #include <iostream>
-class Outer {
-public:
-    class Inner {
-    public:
-        static void hello() {
-            std::cout << "Hello from Inner class" << std::endl;
-        }
-    };
-};
+namespace LongNamespaceName {
+    namespace SubNamespace {
+        int value = 100;
+    }
+}
+
+// 使用別名來縮短名稱
+namespace LSN = LongNamespaceName::SubNamespace;
 
 int main() {
-    Outer::Inner::hello(); // 這是作用域解析，不是 Chaining
+    std::cout << LSN::value << std::endl;
     return 0;
 }
